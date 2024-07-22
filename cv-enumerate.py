@@ -16,6 +16,9 @@ def CVEnumerate():
 	<input type="text" name="actor_name">
 	<input type="submit" value="送信">
 	<br>
+	"""
+	if request.method == "GET":
+		res += """
 	<input type="checkbox" name="TV_anime" checked> テレビアニメ
 	<input type="checkbox" name="theater_anime" checked> 劇場アニメ
 	<input type="checkbox" name="OVA" checked> OVA
@@ -28,6 +31,11 @@ def CVEnumerate():
 	<br>
 	""" 
 	if request.method == "POST":
+		for key in all_type_dict.keys():
+			res += f"<input type='checkbox' name='{key}' {'checked' if request.form.get(key) else ''}> {all_type_dict[key]}\n"
+		res += "<br>"
+		res += f"<input type='checkbox' name='main_char' {'checked' if request.form.get('main_char') else ''}> メインキャラクターのみを選択しますか？"
+		res += "</form><br>"
 		res += f"{request.form['actor_name']}の検索結果：<br>"
 		sellect = []
 		for label in all_type_dict.keys():
