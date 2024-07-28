@@ -1,3 +1,7 @@
 .venv
 test.py
 __pycache__
+output.html
+build/
+dist/
+cv-enumerate.spec

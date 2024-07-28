@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 from flask import *
-from main import get_cv_info
+from get_cv_info import get_cv_info
 
 app = Flask(__name__)
 
@@ -19,17 +19,17 @@ def CVEnumerate():
 	"""
 	if request.method == "GET":
 		res += """
-	<input type="checkbox" name="TV_anime" checked> テレビアニメ
-	<input type="checkbox" name="theater_anime" checked> 劇場アニメ
-	<input type="checkbox" name="OVA" checked> OVA
-	<input type="checkbox" name="web_anime" checked> ウェブアニメ
-	<input type="checkbox" name="game" checked> ゲーム
-	<input type="checkbox" name="radio" checked> ラジオ
-	<br>
-	<input type="checkbox" name="main_char"> メインキャラクターのみを選択しますか？
-	</form>
-	<br>
-	""" 
+		<input type="checkbox" name="TV_anime" checked> テレビアニメ
+		<input type="checkbox" name="theater_anime"> 劇場アニメ
+		<input type="checkbox" name="OVA"> OVA
+		<input type="checkbox" name="web_anime"> ウェブアニメ
+		<input type="checkbox" name="game"> ゲーム
+		<input type="checkbox" name="radio"> ラジオ
+		<br>
+		<input type="checkbox" name="main_char"> メインキャラクターのみを選択しますか？
+		</form>
+		<br>
+		""" 
 	if request.method == "POST":
 		for key in all_type_dict.keys():
 			res += f"<input type='checkbox' name='{key}' {'checked' if request.form.get(key) else ''}> {all_type_dict[key]}\n"
